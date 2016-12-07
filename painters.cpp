@@ -1,5 +1,7 @@
 #include "painters.h"
 
+// Функции для отрисовки объектов
+
 void ramp(QPainter *painter, int p)
 {
     QPen pen_1;
@@ -38,13 +40,7 @@ void scape(QPainter *painter, int p){
     painter->drawLine(p+10,p + rect.height()/2,p,p + (rect.height()/4)*3);
 }
 
-
-
-
-
-
-
-
+// Эта функция возращает список указателей на функции выше
 
 QList<void(*)(QPainter*, int)> getPainterList(){
     QList<void(*)(QPainter*, int)> a;

@@ -16,6 +16,7 @@ void SceneWindow::configureInterface()
     gridLayout = new QGridLayout;
     sceneB = new Scene;
     itemBar = new View(sceneB);
+    //Заполняем нашими превьюшками наш "Итем бар"
     for(int i = 0; i < 2; i++)
         sceneB->addItem(new Preview(33, 65 * i + 33, i));
     itemBar->setFixedWidth(69);

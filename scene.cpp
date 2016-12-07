@@ -5,7 +5,7 @@
 #include <QDrag>
 #include <QMimeData>
 
-
+// Просто нужно переопределить методы что бы работал dropEvent()
 Scene::Scene()
 {
 }
