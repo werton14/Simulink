@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QGridLayout>
 #include <QList>
-#include <scene.h>
-#include <view.h>
+#include "scene.h"
+#include "view.h"
 #include <QMenuBar>
 #include <QToolBar>
 #include <QPushButton>
@@ -13,7 +13,7 @@
 #include "preview.h"
 #include <QTabWidget>
 #include <QTabBar>
-
+#include "painters.h"
 
 class SceneWindow : public QWidget
 {
@@ -27,7 +27,7 @@ private:
     Scene * sceneB;
     Scene * sceneZ;
     View *constructZone;
-    View *itemBar;
+    QGraphicsView *itemBar;
     QMenuBar *menuBar;
     QToolBar *toolBar;
     QList<Preview*> previewList;

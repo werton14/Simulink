@@ -12,8 +12,8 @@ void ramp(QPainter *painter, int p)
     pen_3.setWidth(1);
     QRect rect (p,p,50,60);
     painter->setPen(pen_3);
-    painter->drawRect(rect);
     painter->setBrush(Qt::white);
+    painter->drawRect(rect);  
     painter->setPen(pen_2);
     painter->drawLine(p + rect.width()/7,p + (rect.height()/4) * 3.5,p + rect.width()/2.5,p + (rect.height()/4) * 3.5);
     painter->drawLine(p + rect.width()/2.5,p + (rect.height()/4) * 3.5,p + (rect.width()/4) * 3.5, p + rect.height()/6);

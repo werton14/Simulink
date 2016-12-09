@@ -1,5 +1,5 @@
 #include "preview.h"
-#include <QGraphicsScene>
+#include "scene.h"
 
 Preview::Preview(int x, int y, int p) : currentPainter(p)
 {

@@ -14,11 +14,12 @@ SceneWindow::~SceneWindow()
 void SceneWindow::configureInterface()
 {
     gridLayout = new QGridLayout;
-    sceneB = new Scene;
-    itemBar = new View(sceneB);
+    itemBar = new QGraphicsView(new QGraphicsScene);
     //Заполняем нашими превьюшками наш "Итем бар"
-    for(int i = 0; i < 2; i++)
-        sceneB->addItem(new Preview(33, 65 * i + 33, i));
+    for(int i = 0; i < getPainterList().size(); i++)
+        itemBar->scene()->addItem(new Preview(33, 65 * i + 33, i));
+    itemBar->setAlignment(Qt::AlignTop);
+    itemBar->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     itemBar->setFixedWidth(69);
     itemBar->setAcceptDrops(false);
     workZone = new QTabWidget;

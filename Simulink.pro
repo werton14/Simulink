@@ -18,13 +18,19 @@ SOURCES += main.cpp\
     scene.cpp \
     item.cpp \
     preview.cpp \
-    painters.cpp
+    painters.cpp \
+    contextmenu.cpp \
+    paramnamevector.cpp \
+    line.cpp
 
 HEADERS  += scenewindow.h \
     view.h \
     scene.h \
     item.h \
     preview.h \
-    painters.h
+    painters.h \
+    contextmenu.h \
+    paramnamevector.h \
+    line.h
 
 RESOURCES +=

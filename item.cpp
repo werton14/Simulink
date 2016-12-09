@@ -11,6 +11,8 @@ Item::Item(int x, int y, int p){
     this->setFlag(GraphicsItemFlag::ItemIsMovable);
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     painterList = getPainterList();
+    paramNameVector = getParamNameVector(currentPainter);
+    paramVector = new QVector<QString>;
 }
 
 QRectF Item::boundingRect() const
@@ -30,5 +32,14 @@ void Item::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 void Item::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Delete) this->scene()->removeItem(this);
+    if(event->key() == Qt::Key_M){
+        contextMenu = new ContextMenu(paramVector, &paramNameVector);
+        qDebug() << paramNameVector.at(currentPainter);
+        contextMenu->create_field();
+        contextMenu->show();
+    }
 }
 
+void Item::mouseDoubleClickEvent(QMouseEvent *event)
+{
+}
