@@ -14,6 +14,7 @@ public:
     void setHalfX();
     void setY();
     void setPoint();
+    void setQPoint(QPoint, QPoint);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 private:

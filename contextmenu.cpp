@@ -10,7 +10,6 @@ ContextMenu::ContextMenu(QWidget *parent) : QWidget(parent)
 ContextMenu::ContextMenu(QVector<QString> *param,QVector<QString> *name)
 {
     this->setWindowTitle("Context menu");
-    saveLineEditName = new QString;
     labelVectorArgument = name;
     lineEditVectorArgument = param;
     lineEditName = new QLineEdit;
@@ -21,7 +20,8 @@ ContextMenu::ContextMenu(QVector<QString> *param,QVector<QString> *name)
     vlayoutLineEdit = new QVBoxLayout;
     vlayoutLabelName = new QVBoxLayout;
     vlayoutLineName = new QVBoxLayout;
-    pushButton = new QPushButton("OK");
+    pushButton = new QPushButton("OK", this);
+    pushButton->setShortcut(Qt::Key_Return);
     spacerItem = new QSpacerItem(200,1);
     connect(pushButton,SIGNAL(clicked(bool)),this,SLOT(read()));
     connect(pushButton,SIGNAL(clicked(bool)),this,SLOT(close()));
@@ -50,13 +50,21 @@ void ContextMenu::create_field()
        vlayout->addLayout(hlayout);
        hlayout->addItem(spacerItem);
        hlayout->addWidget(pushButton);
-
+    for(int i = 0; i < lineEditVectorArgument->size(); i++){
+        lineEditVector.at(i)->setText(lineEditVectorArgument->at(i));
+    }
 }
 
 void ContextMenu::read()
 {
     for(int i = 0; i < lineEditVector.size(); i++){
-        lineEditVectorArgument->push_back(lineEditVector.at(i)->text());
+        lineEditVectorArgument->operator [](i) = lineEditVector.at(i)->text();
     }
-    saveLineEditName->push_back(lineEditName->text());
+    *saveLineEditName = lineEditName->text();
+}
+
+void ContextMenu::setName(QString *name)
+{
+    saveLineEditName = name;
+    lineEditName->setText(*saveLineEditName);
 }

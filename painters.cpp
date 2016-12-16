@@ -1,8 +1,9 @@
 #include "painters.h"
 
+
 // Функции для отрисовки объектов
 
-void ramp(QPainter *painter, int p)
+void ramp(QPainter *painter, int p, QString s)
 {
     QPen pen_1;
     pen_1.setWidth(2);
@@ -20,9 +21,10 @@ void ramp(QPainter *painter, int p)
     painter->setPen(pen_1);
     painter->drawLine(p + rect.width() + 1,p + (rect.height()/5) * 2,p + rect.width() + rect.width()/5,p + rect.height()/2);
     painter->drawLine(p + rect.width() + 1,p + (rect.height()/5) * 3,p + rect.width() + rect.width()/5,p + rect.height()/2);
+    painter->drawText(-5 - ((s.size())*5)/2, p-2,s);
 }
 
-void scape(QPainter *painter, int p){
+void scape(QPainter *painter, int p, QString s){
     QPen pen_1;
     pen_1.setWidth(2);
     QPen pen_2;
@@ -38,12 +40,13 @@ void scape(QPainter *painter, int p){
     painter->setPen(pen_1);
     painter->drawLine(p+10,p + rect.height()/2,p,p + rect.height()/4);
     painter->drawLine(p+10,p + rect.height()/2,p,p + (rect.height()/4)*3);
+    painter->drawText(3 - ((s.size())*5)/2  , p-2,s);
 }
 
 // Эта функция возращает список указателей на функции выше
 
-QList<void(*)(QPainter*, int)> getPainterList(){
-    QList<void(*)(QPainter*, int)> a;
+QList<void(*)(QPainter*, int, QString)> getPainterList(){
+    QList<void(*)(QPainter*, int, QString)> a;
     a.push_back(ramp);
     a.push_back(scape);
     return a;

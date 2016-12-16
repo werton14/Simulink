@@ -23,7 +23,7 @@ protected:
 private:
     int currentPainter = 0;
     QPainter *p1;
-    QList<void(*)(QPainter*, int)> painterList;
+    QList<void(*)(QPainter*, int, QString)> painterList;
 };
 
 #endif // PREVIEW_H

@@ -2,7 +2,8 @@
 #define PAINTERS_H
 #include <QPainter>
 #include <QList>
+#include <QString>
 
-QList<void(*)(QPainter*, int)> getPainterList();
+QList<void(*)(QPainter*, int, QString)> getPainterList();
 
 #endif // PAINTERS_H

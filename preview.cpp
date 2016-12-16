@@ -15,7 +15,7 @@ QRectF Preview::boundingRect() const
 
 void Preview::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painterList.at(currentPainter)(painter, -30); // Вызываем функцию отрисовки
+    painterList.at(currentPainter)(painter, -30, ""); // Вызываем функцию отрисовки
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
@@ -28,7 +28,7 @@ void Preview::mousePressEvent(QGraphicsSceneMouseEvent *event)
     QPixmap pixmap(61, 61);
     pixmap.fill(Qt::white);
     QPainter *painter = new QPainter(&pixmap);
-    painterList.at(currentPainter)(painter, 0); // Вызываем функцию отрисовки объекта при драге
+    painterList.at(currentPainter)(painter, 0, ""); // Вызываем функцию отрисовки объекта при драге
     drag->setPixmap(pixmap);
 
     mimeData->setText(QString::number(currentPainter));

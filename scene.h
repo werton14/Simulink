@@ -22,9 +22,11 @@ protected:
     virtual void dropEvent ( QGraphicsSceneDragDropEvent * event );
     virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
+    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 private:
     QGraphicsItem *firstItem;
     QGraphicsItem *secondItem;
+    Line *line;
 };
 
 #endif

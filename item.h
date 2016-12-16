@@ -25,11 +25,12 @@ public:
     void setCurrentPainter(int p){currentPainter = p;}
 
 private:
-    QList<void(*)(QPainter*, int)> painterList;
+    QList<void(*)(QPainter*, int, QString)> painterList;
     int currentPainter = 0;
     QVector<QString> *paramVector;
     QVector<QString> paramNameVector;
     ContextMenu *contextMenu;
+    QString *name;
 
 };
 

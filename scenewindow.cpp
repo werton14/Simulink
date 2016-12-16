@@ -33,17 +33,15 @@ void SceneWindow::createMenuBar()
 {
     menuBar = new QMenuBar();
     QMenu *fileMenu = new QMenu("File");
-    fileMenu->addAction("New");
+    fileMenu->addAction("New", this, SLOT(newFile()), Qt::CTRL + Qt::Key_N);
     fileMenu->addSeparator();
     fileMenu->addAction("Open");
-    fileMenu->addAction("Close");
+    fileMenu->addAction("Close", this, SLOT(closeFile()), Qt::CTRL + Qt::Key_F4);
     fileMenu->addSeparator();
     fileMenu->addAction("Save");
     fileMenu->addAction("Seve as");
     menuBar->addMenu(fileMenu);
     menuBar->addMenu(new QMenu("Help"));
-    connect(fileMenu->actions().at(0), SIGNAL(triggered(bool)), this, SLOT(newFile()));
-    connect(fileMenu->actions().at(3), SIGNAL(triggered(bool)), this, SLOT(closeFile()));
 }
 
 void SceneWindow::newFile()

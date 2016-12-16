@@ -14,6 +14,7 @@
 #include <QList>
 #include <QVector>
 
+
 class ContextMenu : public QWidget
 {
     Q_OBJECT
@@ -27,6 +28,7 @@ signals:
 public slots:
     void create_field();
     void read();
+    void setName(QString *);
 private:
     QVector<QLineEdit*> lineEditVector;
     QSpacerItem *spacerItem;

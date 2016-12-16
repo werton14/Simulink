@@ -1,5 +1,5 @@
 #include "line.h"
-
+#include <cmath>
 Line::Line(QPoint begin, QPoint end): beginPoint(begin), endPoint(end)
 {
     setHalfX();
@@ -24,9 +24,18 @@ void Line::setPoint()
     p3.setY(y);
 }
 
+void Line::setQPoint(QPoint b, QPoint e)
+{
+    beginPoint = b;
+    endPoint = e;
+    setHalfX();
+    setY();
+    setPoint();
+}
+
 QRectF Line::boundingRect() const
 {
-    return QRectF(0, 0, 2 * halfX, y);
+    return QRectF(0,-1*abs(y), 2 * halfX,2*abs(y));
 }
 
 void Line::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -40,5 +49,5 @@ void Line::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
 void Line::setY()
 {
-    y = -1 * (beginPoint.y() - endPoint.y());
+    y = -1*((beginPoint.y() - endPoint.y()));
 }
