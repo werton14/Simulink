@@ -14,13 +14,13 @@ void Line::setHalfX()
 
 void Line::setPoint()
 {
-    p0.setX(0);
+    p0.setX(0+30);
     p0.setY(0);
     p1.setX(halfX);
     p1.setY(0);
     p2.setX(halfX);
     p2.setY(y);
-    p3.setX(2 * halfX);
+    p3.setX(2 * halfX-20);
     p3.setY(y);
 }
 

@@ -49,12 +49,16 @@ void Scene::keyPressEvent(QKeyEvent *event)
         line->setPos(firstItem->pos().x() , firstItem->pos().y());
         this->addItem(line);
     }
-    emit item->keyPressEvent(event);
+    if(focusItem()){
+        item->keyPressEvent(event);
+    }
 }
 
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    focusItem()->setPos(event->scenePos());
+    if(focusItem()){
+        focusItem()->setPos(event->scenePos());
+    }
     if(line != NULL){
         QPoint p1, p2;
         p1.setX(firstItem->pos().x());
@@ -66,5 +70,4 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         this->removeItem(line);
         this->addItem(line);
     }
-    qDebug() << "Move";
 }
