@@ -34,6 +34,7 @@ private:
     QTabWidget *workZone;
     void configureInterface();
     void createMenuBar();
+    void test();
 private slots:
     void newFile();
     void closeFile();

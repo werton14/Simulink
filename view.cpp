@@ -1,6 +1,8 @@
 #include "View.h"
 #include <QDebug>
 #include <QDropEvent>
+
+#include "SceneItem/transferfunction.h"
 View::View(Scene * scene) :
     QGraphicsView(scene)
 {
@@ -24,7 +26,8 @@ void View::dragMoveEvent ( QDragMoveEvent * event )
 
 void View::dropEvent ( QDropEvent * event )
 {
-        Item *item = new Item(0, 0, event->mimeData()->text().toInt());
+    QDomDocument doc;
+        TransferFunction *item = new TransferFunction(0, 0, event->mimeData()->text().toInt(), doc);
         item->setPos(mapToScene(event->pos()));
         this->scene()->addItem(item);
         QGraphicsView::dropEvent(event);

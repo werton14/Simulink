@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -21,7 +22,11 @@ SOURCES += main.cpp\
     painters.cpp \
     contextmenu.cpp \
     paramnamevector.cpp \
-    line.cpp
+    line.cpp \
+    iteminfo.cpp \
+    tinyxml2.cpp \
+    SceneItem/transferfunction.cpp \
+    SceneItem/position.cpp
 
 HEADERS  += scenewindow.h \
     view.h \
@@ -31,6 +36,10 @@ HEADERS  += scenewindow.h \
     painters.h \
     contextmenu.h \
     paramnamevector.h \
-    line.h
+    line.h \
+    iteminfo.h \
+    tinyxml2.h \
+    SceneItem/transferfunction.h \
+    SceneItem/position.h
 
 RESOURCES +=

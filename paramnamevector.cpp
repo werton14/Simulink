@@ -9,8 +9,12 @@ QVector<QString> getParamNameVector(int currentObject)
 
     QList<QVector<QString>> listParamNameVector;
     listParamNameVector.push_back(paramNameVector);
+    listParamNameVector.push_back(paramNameVector);
+    listParamNameVector.push_back(paramNameVector);
     paramNameVector.push_back("Device");
     listParamNameVector.push_back(paramNameVector);
+
+
 
     return listParamNameVector.at(currentObject);
 }

@@ -1,4 +1,5 @@
 #include "scene.h"
+#include "SceneItem/transferfunction.h"
 
 #include <QDebug>
 #include <QGraphicsSceneMouseEvent>
@@ -30,7 +31,8 @@ void Scene::dropEvent ( QGraphicsSceneDragDropEvent * event )
 
 void Scene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
-    secondItem = firstItem;
+    TransferFunction *f = dynamic_cast<TransferFunction*> (this->focusItem());
+    QDomElement e = f->getTransferFunctionXML();
     firstItem = this->focusItem();
 }
 

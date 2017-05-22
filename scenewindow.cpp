@@ -4,6 +4,7 @@ SceneWindow::SceneWindow()
 {
     createMenuBar();
     configureInterface();
+    test();
 }
 
 SceneWindow::~SceneWindow()
@@ -44,11 +45,15 @@ void SceneWindow::createMenuBar()
     menuBar->addMenu(new QMenu("Help"));
 }
 
+void SceneWindow::test()
+{
+
+}
+
 void SceneWindow::newFile()
 {
     workZone->addTab(new View(new Scene), "Новая схема");
 }
-
 void SceneWindow::closeFile()
 {
     workZone->removeTab(workZone->currentIndex());
