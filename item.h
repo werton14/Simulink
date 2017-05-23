@@ -10,8 +10,14 @@
 #include <QPainter>
 #include <QVector>
 #include <QMouseEvent>
+#include <QDomElement>
+#include <QDomDocument>
+#include <QDomNode>
 
 class Item;
+QDomElement addElement( QDomDocument &, QDomNode &,
+                         const QString &,
+                          const QString &value = QString::null );
 
 class Item: public QGraphicsItem
 {
@@ -36,5 +42,6 @@ private:
     QString *name;
     QList<QGraphicsItem *> line;
 };
+
 
 #endif // ITEM_H

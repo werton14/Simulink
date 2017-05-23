@@ -1,18 +1,6 @@
 #include "transferfunction.h"
 #include <QDebug>
 
-QDomElement addElement( QDomDocument &doc, QDomNode &node,
-                         const QString &tag,
-                          const QString &value = QString::null )
-{
-    QDomElement el = doc.createElement( tag );
-    node.appendChild( el );
-    if ( !value.isNull() ) {
-       QDomText txt = doc.createTextNode( value );
-       el.appendChild( txt );
-    }
-    return el;
-}
 
 
 void TransferFunction::updateTransferFunctionXML()
