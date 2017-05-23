@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     line.cpp \
     iteminfo.cpp \
     SceneItem/transferfunction.cpp \
-    SceneItem/position.cpp
+    SceneItem/position.cpp \
+    SceneItem/globalinput.cpp
 
 HEADERS  += scenewindow.h \
     view.h \
@@ -38,6 +39,7 @@ HEADERS  += scenewindow.h \
     line.h \
     iteminfo.h \
     SceneItem/transferfunction.h \
-    SceneItem/position.h
+    SceneItem/position.h \
+    SceneItem/globalinput.h
 
 RESOURCES +=
