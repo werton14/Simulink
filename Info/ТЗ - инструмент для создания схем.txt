@@ -1,0 +1,137 @@
+Для начала настрой гит.
+Как это сделать, сказано в приложенном файле.
+
+-----------------------------------------------
+Положим гит настроен, клон репозитория у тебя на компе.
+
+1. Создай папку в корне проекта с названием как и инструмент (название придумай сам).
+2. ОБЯЗАТЕЛЬНО создай внутри две папки - Models and Views. В Views поместишь все что связано с окнами и UI. 
+   В Models - классы, отвучающие за логику работы утилиты.
+3. Залей все на гитхаб.
+
+------------------------------------------------------------------------------------------------------------
+Если все предварительные действия сделаны, то дальше по требованиям:
+
+1. Должен быть главный класс с методом Start(). По вызову этого метода должен собственно запуститься инструмент (открыться окно, или что-то подобное).
+2. Главный класс должен испускать сигнал WorkFinished(), когда пользователь закроет все окна или нажмет кнопку "Назад в меню".
+   (Все вопросы по внешнему виду к Гопченко).
+3. Все окна должны быть наследниками BaseApplicationStyleWindow. Просто так надо :).
+4. Для меня не важно как ты реализуешь диалог с пользователем или логику инструмента. 
+   Как совет - для работы с XML используй QDomDocument. Read the documentation.
+5. Данный инструмент должен создавать xml файлы с соответствующим наполнением.
+
+--------------------------------------------------------------------------------------------------------------
+
+Описание наполнения xml файла:
+
+1. Корневой элемент - <Scheme level="Low" type="Dynamic">
+   level и type должны задаваться пользователем.
+2. Всего есть 5 структурных едениц для схемы:
+   1) TransferFunction - передаточная функция.
+   
+   для передаточной функции характерны один вход и один выход.
+   Это значит, что к ней можно подключить только два элемента. Один на вход, и один на выход.
+   
+   <TransferFunction id="1">                                          # id это порядковый номер элемента. не должно быть одинаковых id для элементов одного типа
+			<PreviousElementID>1</PreviousElementID>                  # id элемента, подключенного ко входу
+			<PreviousElementType>GlobalInput</PreviousElementType>    # тип элемента на входе
+			<NextElementType>Adder</NextElementType>                  # тип элемента на выходе
+			<NextElementID>1</NextElementID>                          # id элемента на выходе
+			<AdderInputNumber>2</AdderInputNumber>                    # если данный элемент подключен к сумматору (следуюущий элемент adder), то нужно указать номер входа, иначе NULL
+			<Function>Some function(sinx)</Function>                  # некоторая функция, подумай над реализацией редактора для их ввода
+			<Position>                                                # позиция элемента на сетке
+				<X>1</X>
+				<Y>0</Y>
+			</Position>
+	</TransferFunction>
+	
+	2) GlobalInput - вход схемы.
+	Для входа характерно только выходное подключение.
+	
+	по тега все то же, что и для TransferFunction.
+	
+	<GlobalInput id="1">
+			<NextElementType>TransferFunction</NextElementType>
+			<NextElementID>1</NextElementID>
+			<AdderInputNumber>NULL</AdderInputNumber>
+			<Function>infunc1</Function>
+			<Position>
+				<X>0</X>
+				<Y>0</Y>
+			</Position>
+	</GlobalInput>
+	
+	3) GlobalOutput - выход схемы.
+	Для выхода характерно только входное подключение
+	
+	по тега все то же.
+	
+	<GlobalOutput id="1">
+			<PreviousElementType>TransferFunction</PreviousElementType>
+			<PreviousElementID>3</PreviousElementID>
+			<Function>outfunc1</Function>
+			<Position>
+				<X>5</X>
+				<Y>0</Y>
+			</Position>
+	</GlobalOutput>
+	
+	4) Node - узел.
+	Узел - это разветвление ветви на две.
+	У узла только один вход и ДВА выхода.
+	
+			    ---------------> 1й выход
+		      	|
+	вход------->0
+			    |
+			    ---------------> 2й выход	
+	
+	<Node id="1">
+			<PreviousElementID>1</PreviousElementID>
+			<PreviousElementType>Adder</PreviousElementType>
+			<FirstOutputID>3</FirstOutputID>
+			<SecondOutputID>2</SecondOutputID>
+			<FirstOutputType>TransferFunction</FirstOutputType>
+			<SecondOutputType>GlobalOutput</SecondOutputType>
+			<AdderInputNumber>NULL</AdderInputNumber>
+			<Position>
+				<X>3</X>
+				<Y>0</Y>
+			</Position>
+	</Node>
+	
+	5) Adder - сумматор.
+	Для сумматора характерны три входа и один выход. НО, необязательно все входы должны использоваться
+	
+	входы сумматора работает в двух режимах. + и -
+	
+	<Adder id="1">
+			<FirstInputID>1</FirstInputID>
+			<SecondInputID>2</SecondInputID>
+			<ThirdInputID>NULL</ThirdInputID>
+			<FirstInputType>TransferFunction</FirstInputType>
+			<SecondInputType>TransferFunction</SecondInputType>
+			<ThirdInputType>NULL</ThirdInputType>
+			<NextElementType>Node</NextElementType>
+			<NextElementID>1</NextElementID>
+			<FirstInputMode>1</FirstInputMode>                      # режим работы входа, 1 это +. 0 это -.
+			<SecondInputMode>1</SecondInputMode>
+			<ThirdInputID>0</ThirdInputID>
+			<AdderInputNumber>NULL</AdderInputNumber>
+			<Position>
+				<X>2</X>
+				<Y>0</Y>
+			</Position>
+	</Adder>
+	
+----------------------------------------------------------------------------------------------------------
+
+Также у схемы есть словарь символьных констант
+
+	<SymbolConstants id="0">      # id не важно, важно что бы оно было
+    	<g value="9.8"/>          # имя узла - это символьное обозначение константы, атрибут value - ее значение.
+    </SymbolConstants>
+	
+На этом закончим с описанием xml файла.
+
+----------------------------------------------------------------------------------------
