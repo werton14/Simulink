@@ -26,7 +26,10 @@ SOURCES += main.cpp\
     iteminfo.cpp \
     SceneItem/transferfunction.cpp \
     SceneItem/position.cpp \
-    SceneItem/globalinput.cpp
+    SceneItem/globalinput.cpp \
+    SceneItem/globaloutput.cpp \
+    SceneItem/node.cpp \
+    SceneItem/adder.cpp
 
 HEADERS  += scenewindow.h \
     view.h \
@@ -40,6 +43,9 @@ HEADERS  += scenewindow.h \
     iteminfo.h \
     SceneItem/transferfunction.h \
     SceneItem/position.h \
-    SceneItem/globalinput.h
+    SceneItem/globalinput.h \
+    SceneItem/globaloutput.h \
+    SceneItem/node.h \
+    SceneItem/adder.h
 
 RESOURCES +=

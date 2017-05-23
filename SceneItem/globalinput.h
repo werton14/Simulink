@@ -19,6 +19,7 @@ private:
     QString nextElementType = "Type";
     int adderInputNumber = NULL;
     QString function = "Function";
+
     void updateGlobalInputXML();
     QDomDocument doc;
 };
