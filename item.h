@@ -11,7 +11,6 @@
 #include <QVector>
 #include <QMouseEvent>
 
-
 class Item;
 
 class Item: public QGraphicsItem
@@ -23,6 +22,10 @@ public:
     virtual void mouseDoubleClickEvent(QMouseEvent*);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void setCurrentPainter(int p){currentPainter = p;}
+    void repaintLines();
+
+    QList<QGraphicsItem *> getLines() const;
+    void addLine(QGraphicsItem *value);
 
 private:
     QList<void(*)(QPainter*, int, QString)> painterList;
@@ -31,8 +34,7 @@ private:
     QVector<QString> paramNameVector;
     ContextMenu *contextMenu;
     QString *name;
-
+    QList<QGraphicsItem *> line;
 };
-
 
 #endif // ITEM_H

@@ -24,7 +24,6 @@ SOURCES += main.cpp\
     paramnamevector.cpp \
     line.cpp \
     iteminfo.cpp \
-    tinyxml2.cpp \
     SceneItem/transferfunction.cpp \
     SceneItem/position.cpp
 
@@ -38,7 +37,6 @@ HEADERS  += scenewindow.h \
     paramnamevector.h \
     line.h \
     iteminfo.h \
-    tinyxml2.h \
     SceneItem/transferfunction.h \
     SceneItem/position.h
 

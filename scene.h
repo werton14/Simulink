@@ -26,7 +26,6 @@ protected:
 private:
     QGraphicsItem *firstItem;
     QGraphicsItem *secondItem;
-    Line *line;
 };
 
 #endif

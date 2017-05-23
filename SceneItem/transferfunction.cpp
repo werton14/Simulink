@@ -35,10 +35,11 @@ void TransferFunction::updateTransferFunctionXML()
     addElement(doc, transferFunctionXML, "PreviousElementType", previousElementType);
     addElement(doc, transferFunctionXML, "NextElementID", QString::number(nextElementId));
     addElement(doc, transferFunctionXML, "NextElementType", nextElementType);
-    addElement(doc, transferFunctionXML, "AdderInputNumber", QString::number(adderInputNumber));
+    if(adderInputNumber == NULL) addElement(doc, transferFunctionXML, "AdderInputNumber", "NULL");
+    else addElement(doc, transferFunctionXML, "AdderInputNumber", QString::number(adderInputNumber));
     addElement(doc, transferFunctionXML, "Function", function);
     QDomElement pos = addElement(doc, transferFunctionXML, "Position");
-    addElement(doc, pos, "X", QString::number(position.getX()));
-    addElement(doc, pos, "Y", QString::number(position.getY()));
+    addElement(doc, pos, "X", QString::number(this->pos().x()));
+    addElement(doc, pos, "Y", QString::number(this->pos().y()));
     qDebug() << doc.toString();
 }

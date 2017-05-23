@@ -6,17 +6,24 @@
 #include <QPoint>
 #include <QPainter>
 #include <QPen>
+#include "item.h"
 
 class Line : public QGraphicsItem
 {
 public:
-    Line(QPoint, QPoint);
+    Line();
     void setHalfX();
     void setY();
     void setPoint();
-    void setQPoint(QPoint, QPoint);
+    void setQPoint();
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    Item *getFirstItem() const;
+    void setFirstItem(Item *value);
+
+    Item *getSecondItem() const;
+    void setSecondItem(Item *value);
+
 private:
     QPoint beginPoint;
     QPoint endPoint;
@@ -26,6 +33,8 @@ private:
     QPoint p3;
     int halfX;
     int y;
+    Item *firstItem;
+    Item *secondItem;
 };
 
 #endif // LINE_H

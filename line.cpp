@@ -1,10 +1,9 @@
 #include "line.h"
 #include <cmath>
-Line::Line(QPoint begin, QPoint end): beginPoint(begin), endPoint(end)
+#include <QDebug>
+Line::Line()
 {
-    setHalfX();
-    setY();
-    setPoint();
+
 }
 
 void Line::setHalfX()
@@ -22,15 +21,19 @@ void Line::setPoint()
     p2.setY(y);
     p3.setX(2 * halfX-20);
     p3.setY(y);
+
 }
 
-void Line::setQPoint(QPoint b, QPoint e)
+void Line::setQPoint()
 {
-    beginPoint = b;
-    endPoint = e;
+    beginPoint.setX(firstItem->pos().x());
+    endPoint.setX(secondItem->pos().x());
+    beginPoint.setY(firstItem->pos().y());
+    endPoint.setY(secondItem->pos().y());
     setHalfX();
     setY();
     setPoint();
+    this->setPos(firstItem->x(), firstItem->y());
 }
 
 QRectF Line::boundingRect() const
@@ -45,6 +48,26 @@ void Line::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     painter->drawLine(p0, p1);
     painter->drawLine(p1, p2);
     painter->drawLine(p2, p3);
+}
+
+Item *Line::getFirstItem() const
+{
+    return firstItem;
+}
+
+void Line::setFirstItem(Item *value)
+{
+    firstItem = value;
+}
+
+Item *Line::getSecondItem() const
+{
+    return secondItem;
+}
+
+void Line::setSecondItem(Item *value)
+{
+    secondItem = value;
 }
 
 void Line::setY()

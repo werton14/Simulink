@@ -27,7 +27,8 @@ void View::dragMoveEvent ( QDragMoveEvent * event )
 void View::dropEvent ( QDropEvent * event )
 {
     QDomDocument doc;
-        TransferFunction *item = new TransferFunction(0, 0, event->mimeData()->text().toInt(), doc);
+        //TransferFunction *item = new TransferFunction(0, 0, event->mimeData()->text().toInt(), doc);
+        Item * item = new Item(0, 0, event->mimeData()->text().toInt());
         item->setPos(mapToScene(event->pos()));
         this->scene()->addItem(item);
         QGraphicsView::dropEvent(event);

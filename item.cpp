@@ -4,6 +4,7 @@
 #include <QDrag>
 #include <QMimeData>
 #include <QGraphicsScene>
+#include "line.h"
 
 Item::Item(int x, int y, int p){
     setPos(x, y);
@@ -28,6 +29,27 @@ void Item::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     Q_UNUSED(widget);
 
 }
+
+void Item::repaintLines()
+{
+    for(int i = 0; i < line.count(); i++){
+        Line *l = dynamic_cast<Line*> (line.at(i));
+        l->setQPoint();
+        this->scene()->removeItem(l);
+        this->scene()->addItem(l);
+    }
+}
+
+QList<QGraphicsItem *> Item::getLines() const
+{
+    return line;
+}
+
+void Item::addLine(QGraphicsItem *value)
+{
+    line.push_back(value);
+}
+
 
 
 void Item::keyPressEvent(QKeyEvent *event)
