@@ -12,9 +12,6 @@ class TransferFunction : public Item
 public:
     TransferFunction(int x, int y, int p, QDomDocument d):Item(x, y, p), doc(d){}
 
-    QDomElement getTransferFunctionXML();
-    void setTransferFunctionXML(QDomElement &value);
-
 private:
     int id = (int) this;
     int previousElementId = -1;

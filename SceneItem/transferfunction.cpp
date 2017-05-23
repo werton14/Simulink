@@ -15,18 +15,6 @@ QDomElement addElement( QDomDocument &doc, QDomNode &node,
 }
 
 
-
-QDomElement TransferFunction::getTransferFunctionXML()
-{
-    updateTransferFunctionXML();
-    return doc.toElement();
-}
-
-void TransferFunction::setTransferFunctionXML(QDomElement &value)
-{
-    transferFunctionXML = value;
-}
-
 void TransferFunction::updateTransferFunctionXML()
 {
     transferFunctionXML = addElement(doc, doc, "TransferFuction");
